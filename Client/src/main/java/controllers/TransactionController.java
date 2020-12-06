@@ -1,7 +1,46 @@
 package controllers;
 
+import okhttp3.*;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 public class TransactionController {
     private String rootURL = "http://zipcode.rocks:8085";
+    private OkHttpClient client;
+    private MediaType mediaType;
 
-    public TransactionController() {}
+    public TransactionController() throws IOException {
+        this.client = new OkHttpClient().newBuilder()
+//                .connectTimeout(5, TimeUnit.MINUTES)
+//                .readTimeout(5, TimeUnit.MINUTES)
+//                .writeTimeout(5, TimeUnit.MINUTES)
+                .build();
+
+        this.mediaType = MediaType.parse("application/json");
+
+//        RequestBody body = RequestBody.create(mediaType, data);
+    }
+
+    public String get(String path) throws IOException {
+        Request request = new Request.Builder()
+                .url(rootURL + path)
+                .method("GET", null)
+                //.addHeader("Content-Type", "application/json")
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+    public OkHttpClient getClient() {
+        return client;
+    }
+
+    public MediaType getMediaType() {
+        return mediaType;
+    }
+
+    public String getRootURL() {
+        return rootURL;
+    }
 }

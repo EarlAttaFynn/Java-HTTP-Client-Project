@@ -9,6 +9,7 @@ import java.util.List;
 
 import controllers.IdController;
 import controllers.MessageController;
+import controllers.TransactionController;
 import youareell.YouAreEll;
 
 // Simple Shell is a Console view for youareell.YouAreEll.
@@ -21,7 +22,7 @@ public class SimpleShell {
     }
     public static void main(String[] args) throws java.io.IOException {
 
-        YouAreEll webber = new YouAreEll(new MessageController(), new IdController());
+        YouAreEll webber = new YouAreEll(new MessageController(), new IdController(), new TransactionController());
         
         String commandLine;
         BufferedReader console = new BufferedReader
@@ -42,7 +43,8 @@ public class SimpleShell {
 
             //if the user entered a return, just loop again
             if (commandLine.equals(""))
-                continue;
+                System.out.println("cmd? ");
+                commandLine = console.readLine();
             if (commandLine.equals("exit")) {
                 System.out.println("bye!");
                 break;

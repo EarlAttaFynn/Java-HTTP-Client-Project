@@ -11,7 +11,9 @@ public class MessageController {
     private HashSet<Message> messagesSeen;
     // why a HashSet??
 
-    public ArrayList<Message> getMessages() {
+
+
+    public ArrayList<Message> getMessages(String response) {
         return null;
     }
     public ArrayList<Message> getMessagesForId(Id Id) {
