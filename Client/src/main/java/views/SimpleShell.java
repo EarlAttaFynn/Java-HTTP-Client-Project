@@ -7,9 +7,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.Gson;
 import controllers.IdController;
 import controllers.MessageController;
 import controllers.TransactionController;
+import models.Id;
+import models.Message;
 import youareell.YouAreEll;
 
 // Simple Shell is a Console view for youareell.YouAreEll.
@@ -69,18 +73,65 @@ public class SimpleShell {
                 // Specific Commands.
 
                 // ids
-                if (list.contains("ids")) {
+                if (list.contains("ids") && list.contains("get")) {
                     String results = webber.getURLCall("/ids",  "");
                     SimpleShell.prettyPrint(results);
                     continue;
                 }
 
+                if (list.contains("ids") && list.contains("post")) {
+                    System.out.println("Name?");
+                    String name = console.readLine();
+
+                    System.out.println("Github?");
+                    String github = console.readLine();
+
+                    Id obj = new Id();
+                    obj.setName(name);
+                    obj.setGithub(github);
+                    obj.setUserid("");
+
+                    Gson gson = new Gson();
+                    String jpayload = gson.toJson(obj);
+
+                    String results = webber.postURLCall("/ids",  jpayload);
+                    SimpleShell.prettyPrint(results);
+                    continue;
+                }
+
                 // messages
-//                if (list.contains("messages")) {
-//                    String results = webber.get_messages();
-//                    SimpleShell.prettyPrint(results);
-//                    continue;
-//                }
+                if (list.contains("messages") && list.contains("get")) {
+                    String results = webber.getURLCall("/messages",  "");
+                    SimpleShell.prettyPrint(results);
+                    continue;
+                }
+
+                if (list.contains("messages") && list.contains("post")) {
+                    System.out.println("FromId?");
+                    String fromId = console.readLine();
+
+                    System.out.println("ToId?");
+                    String toId = console.readLine();
+
+                    System.out.println("Message?");
+                    String message = console.readLine();
+
+                    Message obj = new Message();
+                    obj.setFromid(fromId);
+                    obj.setToid(toId);
+                    obj.setMessage(message);
+
+                    Gson gson = new Gson();
+                    String jpayload = gson.toJson(obj);
+                    if (toId.isEmpty()) {
+                        String results = webber.postURLCall("/ids/\"\"/messages",  jpayload);
+                        SimpleShell.prettyPrint(results);
+                        continue;
+                    }
+                    String results = webber.postURLCall("/ids/" +toId+ "/messages",  jpayload);
+                    SimpleShell.prettyPrint(results);
+                    continue;
+                }
                 // you need to add a bunch more.
 
                 //!! command returns the last command in history

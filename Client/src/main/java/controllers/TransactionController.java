@@ -19,7 +19,7 @@ public class TransactionController {
 
         this.mediaType = MediaType.parse("application/json");
 
-//        RequestBody body = RequestBody.create(mediaType, data);
+
     }
 
     public String get(String path) throws IOException {
@@ -27,6 +27,17 @@ public class TransactionController {
                 .url(rootURL + path)
                 .method("GET", null)
                 //.addHeader("Content-Type", "application/json")
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+    public String post(String urlExtension, String jpayload) throws IOException {
+        RequestBody body = RequestBody.create(mediaType, jpayload);
+        Request request = new Request.Builder()
+                .url(rootURL + urlExtension)
+                .method("POST", body)
+                .addHeader("Content-Type", "application/json")
                 .build();
         Response response = client.newCall(request).execute();
         return response.body().string();
@@ -43,4 +54,6 @@ public class TransactionController {
     public String getRootURL() {
         return rootURL;
     }
+
+
 }

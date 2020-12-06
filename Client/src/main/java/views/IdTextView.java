@@ -9,6 +9,6 @@ public class IdTextView {
     }
     @Override
     public String toString() {
-        return String.format("\nUserid: %s, Name: %s, Github: %s", idToDisplay.getUserid(), idToDisplay.getName(), idToDisplay.getGithub());
+        return String.format("\nUserid: %s\nName: %s\nGithub: %s\n\n", idToDisplay.getUserid(), idToDisplay.getName(), idToDisplay.getGithub());
     }
 }
