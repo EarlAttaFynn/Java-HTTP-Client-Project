@@ -27,21 +27,21 @@ public class YouAreEll {
 //        System.out.println(urlhandler.MakeURLCall("/messages", "GET", ""));
     }
 
-    public boolean sorter(String mainurl, String method, String jpayload) throws IOException {
-        if (method.equals("GET")) getURLCall(mainurl, jpayload);
-        if (method.equals("POST")) postURLCall(mainurl, jpayload);
-        if (method.equals("PUT")) putURLCall(mainurl, jpayload);
+    public boolean sorter(String urlExtension, String method, String jpayload) throws IOException {
+        if (method.equals("GET")) getURLCall(urlExtension, jpayload);
+        if (method.equals("POST")) postURLCall(urlExtension, jpayload);
+        if (method.equals("PUT")) putURLCall(urlExtension, jpayload);
         return true;
     }
 
 
-    public String getURLCall(String mainurl, String jpayload) throws IOException {
-        if (mainurl.equals("/ids")){
-            String response = transactionController.get(mainurl);
+    public String getURLCall(String urlExtension, String jpayload) throws IOException {
+        if (urlExtension.equals("/ids")){
+            String response = transactionController.get(urlExtension);
             ArrayList<Id> idsList = idCtrl.getIds(response);
             System.out.println(idsList);
-        } else if (mainurl.equals("/messages")){
-            String response = transactionController.get(mainurl);
+        } else if (urlExtension.equals("/messages")){
+            String response = transactionController.get(urlExtension);
             ArrayList<Message> messagesList = msgCtrl.getMessages(response);
             System.out.println(messagesList);
         }
