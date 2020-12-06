@@ -24,17 +24,7 @@ public class YouAreEll {
     public static void main(String[] args) throws IOException {
         // hmm: is this Dependency Injection?
         YouAreEll urlhandler = new YouAreEll(new MessageController(), new IdController(), new TransactionController());
-//        System.out.println(urlhandler.sorter("/ids", "GET", ""));
-//        System.out.println(urlhandler.MakeURLCall("/messages", "GET", ""));
     }
-
-//    public boolean sorter(String urlExtension, String method, String jpayload) throws IOException {
-//        if (method.equals("GET")) getURLCall(urlExtension, jpayload);
-//        if (method.equals("POST")) postURLCall(urlExtension, jpayload);
-//        if (method.equals("PUT")) putURLCall(urlExtension, jpayload);
-//        return true;
-//    }
-
 
     public String getURLCall(String urlExtension, String jpayload) throws IOException {
         if (urlExtension.equals("/ids")){
@@ -46,7 +36,7 @@ public class YouAreEll {
             ArrayList<Message> messagesList = msgCtrl.getMessages(response);
             System.out.println(messagesList);
         }
-        return "nada";
+        return "Code: 200";
     }
 
     public String postURLCall(String urlExtension, String jpayload) throws IOException {
@@ -59,14 +49,14 @@ public class YouAreEll {
             ArrayList<Message> messagesList = msgCtrl.getMessages(response);
             System.out.println(messagesList);
         }
-        return "nada";
+        return "Code: 200";
     }
 
-    public String putURLCall(String mainurl, String jpayload){
-        if (mainurl.equals("/ids")){
-        } else if (mainurl.equals("/messages")){
-        }
-        return "nada";
-    }
+//    public String putURLCall(String mainurl, String jpayload){
+//        if (mainurl.equals("/ids")){
+//        } else if (mainurl.equals("/messages")){
+//        }
+//        return "nada";
+//    }
 
 }

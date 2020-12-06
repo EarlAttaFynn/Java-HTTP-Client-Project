@@ -73,13 +73,13 @@ public class SimpleShell {
                 // Specific Commands.
 
                 // ids
-                if (list.contains("ids") && list.contains("get")) {
+                if (list.contains("ids") && list.contains("GET")) {
                     String results = webber.getURLCall("/ids",  "");
                     SimpleShell.prettyPrint(results);
                     continue;
                 }
 
-                if (list.contains("ids") && list.contains("post")) {
+                if (list.contains("ids") && list.contains("POST")) {
                     System.out.println("Name?");
                     String name = console.readLine();
 
@@ -99,14 +99,34 @@ public class SimpleShell {
                     continue;
                 }
 
+//                if (list.contains("ids") && list.contains("PUT")) {
+//                    System.out.println("Name?");
+//                    String name = console.readLine();
+//
+//                    System.out.println("Github?");
+//                    String github = console.readLine();
+//
+//                    Id obj = new Id();
+//                    obj.setName(name);
+//                    obj.setGithub(github);
+//                    obj.setUserid("");
+//
+//                    Gson gson = new Gson();
+//                    String jpayload = gson.toJson(obj);
+//
+//                    String results = webber.putURLCall("/ids",  jpayload);
+//                    SimpleShell.prettyPrint(results);
+//                    continue;
+//                }
+
                 // messages
-                if (list.contains("messages") && list.contains("get")) {
+                if (list.contains("messages") && list.contains("GET")) {
                     String results = webber.getURLCall("/messages",  "");
                     SimpleShell.prettyPrint(results);
                     continue;
                 }
 
-                if (list.contains("messages") && list.contains("post")) {
+                if (list.contains("messages") && list.contains("POST")) {
                     System.out.println("FromId?");
                     String fromId = console.readLine();
 
@@ -132,7 +152,33 @@ public class SimpleShell {
                     SimpleShell.prettyPrint(results);
                     continue;
                 }
-                // you need to add a bunch more.
+
+//                if (list.contains("messages") && list.contains("PUT")) {
+//                    System.out.println("FromId?");
+//                    String fromId = console.readLine();
+//
+//                    System.out.println("ToId?");
+//                    String toId = console.readLine();
+//
+//                    System.out.println("Message?");
+//                    String message = console.readLine();
+//
+//                    Message obj = new Message();
+//                    obj.setFromid(fromId);
+//                    obj.setToid(toId);
+//                    obj.setMessage(message);
+//
+//                    Gson gson = new Gson();
+//                    String jpayload = gson.toJson(obj);
+//                    if (toId.isEmpty()) {
+//                        String results = webber.putURLCall("/ids/\"\"/messages",  jpayload);
+//                        SimpleShell.prettyPrint(results);
+//                        continue;
+//                    }
+//                    String results = webber.putURLCall("/ids/" +toId+ "/messages",  jpayload);
+//                    SimpleShell.prettyPrint(results);
+//                    continue;
+//                }
 
                 //!! command returns the last command in history
                 if (list.get(list.size() - 1).equals("!!")) {

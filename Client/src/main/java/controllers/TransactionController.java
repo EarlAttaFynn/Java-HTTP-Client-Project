@@ -18,8 +18,6 @@ public class TransactionController {
                 .build();
 
         this.mediaType = MediaType.parse("application/json");
-
-
     }
 
     public String get(String path) throws IOException {
@@ -43,17 +41,14 @@ public class TransactionController {
         return response.body().string();
     }
 
-    public OkHttpClient getClient() {
-        return client;
+    public String put(String urlExtension, String jpayload) throws IOException {
+        RequestBody body = RequestBody.create(mediaType, jpayload);
+        Request request = new Request.Builder()
+                .url(rootURL + urlExtension)
+                .method("PUT", body)
+                .addHeader("Content-Type", "application/json")
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
     }
-
-    public MediaType getMediaType() {
-        return mediaType;
-    }
-
-    public String getRootURL() {
-        return rootURL;
-    }
-
-
 }
