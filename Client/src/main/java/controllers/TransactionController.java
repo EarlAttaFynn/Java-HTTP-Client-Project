@@ -20,9 +20,9 @@ public class TransactionController {
         this.mediaType = MediaType.parse("application/json");
     }
 
-    public String get(String path) throws IOException {
+    public String get(String urlExtension) throws IOException {
         Request request = new Request.Builder()
-                .url(rootURL + path)
+                .url(rootURL + urlExtension)
                 .method("GET", null)
                 //.addHeader("Content-Type", "application/json")
                 .build();

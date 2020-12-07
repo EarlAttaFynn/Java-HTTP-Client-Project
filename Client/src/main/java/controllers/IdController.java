@@ -21,7 +21,7 @@ public class IdController {
             });
             return idList;
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             if (e.getMessage().contains("Cannot deserialize value of type")) {
                 Id id = objectMapper.readValue(response, Id.class);
                 ArrayList<Id> idlist = new ArrayList<Id>();

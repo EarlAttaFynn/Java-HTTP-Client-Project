@@ -26,12 +26,13 @@ public class YouAreEll {
         YouAreEll urlhandler = new YouAreEll(new MessageController(), new IdController(), new TransactionController());
     }
 
-    public String getURLCall(String urlExtension, String jpayload) throws IOException {
-        if (urlExtension.equals("/ids")){
+    public String getAllURLCall(String urlExtension, String jpayload) throws IOException {
+        if (urlExtension.contains("ids")){
             String response = transactionController.get(urlExtension);
+            System.out.println(response);
             ArrayList<Id> idsList = idCtrl.getIds(response);
             System.out.println(idsList);
-        } else if (urlExtension.equals("/messages")){
+        } else if (urlExtension.equals("messages")){
             String response = transactionController.get(urlExtension);
             ArrayList<Message> messagesList = msgCtrl.getMessages(response);
             System.out.println(messagesList);
@@ -40,7 +41,7 @@ public class YouAreEll {
     }
 
     public String postURLCall(String urlExtension, String jpayload) throws IOException {
-        if (urlExtension.contains("/ids") && !urlExtension.contains("messages")){
+        if (urlExtension.contains("ids") && !urlExtension.contains("messages")){
             String response = transactionController.post(urlExtension, jpayload);
             ArrayList<Id> idsList = idCtrl.getIds(response);
             System.out.println(idsList);
@@ -52,11 +53,33 @@ public class YouAreEll {
         return "Code: 200";
     }
 
-//    public String putURLCall(String mainurl, String jpayload){
-//        if (mainurl.equals("/ids")){
-//        } else if (mainurl.equals("/messages")){
-//        }
-//        return "nada";
-//    }
+    public String putURLCall(String urlExtension, String jpayload) throws IOException {
+        if (urlExtension.contains("/ids") && !urlExtension.contains("messages")){
+            //get response from getUrl method
+            //Convert payload into pojo id/message object or just mutate files
+            //call post with my mutated object
+            String response = transactionController.post(urlExtension, jpayload);
 
+            ArrayList<Id> idsList = idCtrl.getIds(response);
+            System.out.println(idsList);
+        } else if (urlExtension.contains("ids") && urlExtension.contains("messages")){
+            String response = transactionController.post(urlExtension, jpayload);
+            ArrayList<Message> messagesList = msgCtrl.getMessages(response);
+            System.out.println(messagesList);
+        }
+        return "Code: 200";
+    }
+
+    public String getSingleURLCall(String urlExtension, String jpayload) throws IOException {
+        if (urlExtension.contains("ids")){
+            String response = transactionController.get(urlExtension);
+            ArrayList<Id> idsList = idCtrl.getIds(response);
+            System.out.println(idsList);
+        } else if (urlExtension.equals("messages")){
+            String response = transactionController.get(urlExtension);
+            ArrayList<Message> messagesList = msgCtrl.getMessages(response);
+            System.out.println(messagesList);
+        }
+        return "Code: 200";
+    }
 }

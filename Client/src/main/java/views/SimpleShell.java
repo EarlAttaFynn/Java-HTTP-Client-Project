@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.gson.Gson;
 import controllers.IdController;
 import controllers.MessageController;
@@ -74,10 +73,20 @@ public class SimpleShell {
 
                 // ids
                 if (list.contains("ids") && list.contains("GET")) {
-                    String results = webber.getURLCall("/ids",  "");
+                    String results = webber.getAllURLCall("/ids",  "");
                     SimpleShell.prettyPrint(results);
                     continue;
                 }
+
+//                if (list.contains("id") && list.contains("GET")) {
+//
+//                    System.out.println("Github?");
+//                    String github = console.readLine();
+//
+//                    String results = webber.getSingleURLCall("/ids/" + github,  "");
+//                    SimpleShell.prettyPrint(results);
+//                    continue;
+//                }
 
                 if (list.contains("ids") && list.contains("POST")) {
                     System.out.println("Name?");
@@ -99,29 +108,29 @@ public class SimpleShell {
                     continue;
                 }
 
-//                if (list.contains("ids") && list.contains("PUT")) {
-//                    System.out.println("Name?");
-//                    String name = console.readLine();
-//
-//                    System.out.println("Github?");
-//                    String github = console.readLine();
-//
-//                    Id obj = new Id();
-//                    obj.setName(name);
-//                    obj.setGithub(github);
-//                    obj.setUserid("");
-//
-//                    Gson gson = new Gson();
-//                    String jpayload = gson.toJson(obj);
-//
-//                    String results = webber.putURLCall("/ids",  jpayload);
-//                    SimpleShell.prettyPrint(results);
-//                    continue;
-//                }
+                if (list.contains("ids") && list.contains("PUT")) {
+                    System.out.println("Name?");
+                    String name = console.readLine();
+
+                    System.out.println("Github?");
+                    String github = console.readLine();
+
+                    Id obj = new Id();
+                    obj.setName(name);
+                    obj.setGithub(github);
+                    obj.setUserid("");
+
+                    Gson gson = new Gson();
+                    String jpayload = gson.toJson(obj);
+
+                    String results = webber.putURLCall("/ids",  jpayload);
+                    SimpleShell.prettyPrint(results);
+                    continue;
+                }
 
                 // messages
                 if (list.contains("messages") && list.contains("GET")) {
-                    String results = webber.getURLCall("/messages",  "");
+                    String results = webber.getAllURLCall("/messages",  "");
                     SimpleShell.prettyPrint(results);
                     continue;
                 }
