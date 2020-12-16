@@ -29,7 +29,7 @@ public class YouAreEll {
     public String getAllURLCall(String urlExtension, String jpayload) throws IOException {
         if (urlExtension.contains("ids")){
             String response = transactionController.get(urlExtension);
-            System.out.println(response);
+//            System.out.println(response);
             ArrayList<Id> idsList = idCtrl.getIds(response);
             System.out.println(idsList);
         } else if (urlExtension.equals("messages")){

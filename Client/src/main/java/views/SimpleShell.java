@@ -78,15 +78,15 @@ public class SimpleShell {
                     continue;
                 }
 
-//                if (list.contains("id") && list.contains("GET")) {
-//
-//                    System.out.println("Github?");
-//                    String github = console.readLine();
-//
-//                    String results = webber.getSingleURLCall("/ids/" + github,  "");
-//                    SimpleShell.prettyPrint(results);
-//                    continue;
-//                }
+                if (list.contains("id") && list.contains("GET")) {
+
+                    System.out.println("Github?");
+                    String github = console.readLine();
+
+                    String results = webber.getSingleURLCall("/ids/" + github,  "");
+                    SimpleShell.prettyPrint(results);
+                    continue;
+                }
 
                 if (list.contains("ids") && list.contains("POST")) {
                     System.out.println("Name?");
